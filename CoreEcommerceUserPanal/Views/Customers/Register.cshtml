@@ -1,0 +1,142 @@
+﻿@model CoreEcommerceUserPanal.Models.Customers
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Default.cshtml";
+}
+
+
+<form asp-action="Register" asp-controller="Customers">
+    <div class="row">
+        <h4 class="col-12 mb-3">Register</h4>
+        <div class="col-md-6 mb-3">
+
+            <label asp-for="FirstName"><b>First Name</b></label>
+            <input type="text" asp-for="FirstName" class="form-control" placeholder="Enter First Name" required>
+
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="LastName"><b>Last Name</b></label>
+            <input type="text" asp-for="LastName" class="form-control" placeholder="Enter Last Name" required>
+
+        </div>
+        <div class="col-12 mb-3">
+            <label asp-for="UserName"><b>User Name</b></label>
+            <input type="text" asp-for="UserName" class="form-control" placeholder="Enter User Name" required>
+        </div>
+        <div class="col-12 mb-3">
+            <label asp-for="Gender">Gender </label>
+            <select asp-for="Gender" id="Gender" class="form-control">
+                <option value="">Selected</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+        <div class="col-12 mb-3">
+            <label asp-for="Password"><b>Password</b></label>
+            <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password" required>
+        </div>
+        <div class="col-12 mb-3">
+            <label asp-for="EmailId"><b>Email</b></label>
+            <input type="email" asp-for="EmailId" class="form-control" placeholder="Enter Email" required>
+        </div>
+
+        <br />
+        <hr />
+        <h4 class="col-12 mb-3">Billing Address</h4>
+        <hr />
+        <br />
+
+        <div class="col-12 mb-3">
+            <label asp-for="Address"><b>Address</b></label>
+            <input type="text" asp-for="Address" class="form-control" placeholder="Enter Address" required>
+        </div>
+
+
+        <div class="col-12 mb-3">
+            <label asp-for="Country"><b>Country</b></label>
+            <select asp-for="Country" id="Country" class="form-control" required>
+                <option value="">Select Country</option>
+                <option>Afghanistan</option>
+                <option>Bhutan</option>
+                <option>Bolivia</option>
+                <option>Canada</option>
+                <option>Cape Verde</option>
+                <option>Dominica</option>
+                <option>Dominican Republic</option>
+                <option>East Timor</option>
+                <option>Ecuador</option>
+                <option>Egypt</option>
+                <option>Ethiopia</option>
+                <option>Finland</option>
+                <option>France</option>
+                <option>Greece</option>
+                <option>Greenland</option>
+                <option>Grenada</option>
+                <option>Guyana</option>
+                <option>Haiti</option>
+                <option>Hungary</option>
+                <option>Iceland</option>
+                <option>India</option>
+                <option>Indonesia</option>
+            </select>
+        </div>
+
+        <div class="col-12 mb-3">
+            <label asp-for="State"><b>State</b></label>
+            <select asp-for="State" id="State" class="form-control" required>
+                <option value="">Select State</option>
+                <option>Andaman and Nicobar Islands</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chandigarh</option>
+                <option>Chhattisgarh</option>
+                <option>Dadra and Nagar Haveli</option>
+                <option>Daman and Diu</option>
+                <option>Delhi</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jammu and Kashmir</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Lakshadweep</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Orissa</option>
+                <option>Pondicherry</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Tripura</option>
+                <option>Uttaranchal</option>
+                <option>Uttar Pradesh</option>
+                <option>West Bengal</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-6 mb-3">
+            <label asp-for="Zip"><b>Zip Code</b></label>
+            <input type="text" asp-for="Zip" class="form-control" placeholder="Enter Zip Code" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label asp-for="PhoneNo"><b>PhoneNo</b></label>
+            <input type="text" asp-for="PhoneNo" class="form-control" placeholder="Enter PhoneNo" required>
+        </div>
+
+
+        <hr class="mb-4">
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Submit</button>
+
+
+    </div>
+</form>

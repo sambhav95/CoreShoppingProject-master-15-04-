@@ -1,0 +1,38 @@
+﻿@model CoreShoppingAdminPortal.Models.Customer
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+
+<h2>Create</h2>
+<h3>Customer</h3>
+<form asp-action="create" asp-controller="Customer">
+    <label asp-for="CustomerId"></label>
+    <input type="text" asp-for="CustomerId" />
+    <br />
+    <label asp-for="FirstName"></label>
+    <input type="text" asp-for="FirstName" />
+    <br />
+    <label asp-for="LastName"></label>
+    <input type="text" asp-for="LastName" />
+    <br />
+    <label asp-for="EmailId"></label>
+    <input type="text" asp-for="EmailId" />
+    <br />
+    <label asp-for="Gender"></label>
+    <input type="text" asp-for="Gender" />
+    <br />
+    <label asp-for="PhoneNo"></label>
+    <input type="text" asp-for="PhoneNo" />
+    <br />
+    <label asp-for="Password"></label>
+    <input type="text" asp-for="Password" />
+    <br />
+    <input type="submit" value="Create Customer" />
+</form>
+
+

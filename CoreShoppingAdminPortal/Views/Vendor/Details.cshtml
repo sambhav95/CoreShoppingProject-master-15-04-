@@ -1,0 +1,37 @@
+﻿@model CoreShoppingAdminPortal.Models.Vendor
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Vendor Details</h2>
+&nbsp;&nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorName)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.EmailId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.PhoneNo)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorDescription)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Html.DisplayFor(Model => Model.VendorId)</td>
+            <td>@Html.DisplayFor(Model => Model.VendorName)</td>
+            <td>@Html.DisplayFor(Model => Model.EmailId)</td>
+            <td>@Html.DisplayFor(Model => Model.PhoneNo)</td>
+            <td>@Html.DisplayFor(Model => Model.VendorDescription)</td>
+
+        </tr>
+
+
+    </tbody>
+</table>
+<center>
+    <a asp-controller="Vendor" asp-action="Index"><button type="button" class="btn btn-success btn1">Back</button></a>
+</center>

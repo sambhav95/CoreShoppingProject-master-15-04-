@@ -1,0 +1,136 @@
+﻿@model CoreEcommerceUserPanal.Models.Customers
+
+@{
+    ViewData["Title"] = "custEdit";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Edit</h2>
+&nbsp;&nbsp;
+<form asp-action="custEdit" asp-controller="Customers">
+    <div class="form-group row">
+        <input type="hidden" asp-for="CustomerId" />
+        <br />
+        <label for="text" class="col-sm-2 col-form-label" asp-for="FirstName">First Name </label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="FirstName" />
+        </div>
+        <br />
+        <label for="text" class="col-sm-2 col-form-label" asp-for="LastName">LastName</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="LastName" />
+        </div>
+
+        <br />
+        <label for="text" class="col-sm-2 col-form-label" asp-for="UserName">UserName</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="UserName" />
+        </div>
+
+        <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="EmailId">Email Id</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="EmailId" />
+        </div>
+      
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="Gender">Gender</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Gender" />
+        </div>
+        <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="PhoneNo">PhoneNo</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="PhoneNo" />
+        </div>
+        <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="Address">Address</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Address" />
+        </div>
+        <br />
+        <label for="text" class="col-sm-2 col-form-label" asp-for="Country">Country</label>
+        <div class="col-sm-10">
+            <select asp-for="Country" id="residential_country" class="form-control" type="Country">
+
+                <option>Afghanistan</option>
+                <option>Bhutan</option>
+                <option>Bolivia</option>
+                <option>Canada</option>
+                <option>Cape Verde</option>
+                <option>Dominica</option>
+                <option>Dominican Republic</option>
+                <option>East Timor</option>
+                <option>Ecuador</option>
+                <option>Egypt</option>
+                <option>Ethiopia</option>
+                <option>Finland</option>
+                <option>France</option>
+                <option>Greece</option>
+                <option>Greenland</option>
+                <option>Grenada</option>
+                <option>Guyana</option>
+                <option>Haiti</option>
+                <option>Hungary</option>
+                <option>Iceland</option>
+                <option>India</option>
+                <option>Indonesia</option>
+            </select>
+        </div>
+
+        <label class="col-sm-2 col-form-label" asp-for="State">State</label>
+        <div class="col-sm-10">
+            <select asp-for="State" id="residential_state" class="form-control" type="State">
+
+                <option>Andaman and Nicobar Islands</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chandigarh</option>
+                <option>Chhattisgarh</option>
+                <option>Dadra and Nagar Haveli</option>
+                <option>Daman and Diu</option>
+                <option>Delhi</option>
+                <option>Goa</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jammu and Kashmir</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Lakshadweep</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Orissa</option>
+                <option>Pondicherry</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Sikkim</option>
+                <option>Tamil Nadu</option>
+                <option>Tripura</option>
+                <option>Uttaranchal</option>
+                <option>Uttar Pradesh</option>
+                <option>West Bengal</option>
+            </select>
+        </div>
+        <label for="text" class="col-sm-2 col-form-label" asp-for="Zip">Zip</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Zip" />
+        </div>
+        <br />
+    </div>
+    <center>
+        <input type="submit" value="Edit" class="btn btn-success" />&nbsp;
+        <button class="btn btn-success" asp-controller="Home" asp-action="About">Back
+       </button>
+    </center>
+</form>

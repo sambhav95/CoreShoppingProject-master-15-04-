@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CoreShoppingAdminPortal.Models.Customer>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Customer Details</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CustomerId)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.EmailId)</th>
+            <th>@Html.DisplayNameFor(model => model.Gender)</th>
+            <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
+            <th>@Html.DisplayNameFor(model => model.Password)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => cust.CustomerId)</td>
+                <td>@Html.DisplayFor(modelItem => cust.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => cust.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => cust.EmailId)</td>
+                <td>@Html.DisplayFor(modelItem => cust.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => cust.PhoneNo)</td>
+                <td>@Html.DisplayFor(modelItem => cust.Password)</td>
+
+                <td>
+
+                    <a asp-controller="Customer" asp-action="Index"
+                       asp-route-id="@cust.CustomerId">Details</a>|
+                    @*<a asp-controller="Customer" asp-action="Index"
+                       asp-route-id="@cust.CustomerId">Edit</a>*@
+
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+

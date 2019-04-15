@@ -1,0 +1,43 @@
+﻿@model CoreShoppingAdminPortal.Models.ProductCategory
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ProductCategory Details</h2>
+&nbsp;&nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.ProductCategoryId)
+            </th>
+
+
+
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.CategoryName)
+            </th>
+
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.CategoryDescription)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.CategoryDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.CategoryDescription)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<center>   @Html.ActionLink("Back to List", "Index")</center>
+

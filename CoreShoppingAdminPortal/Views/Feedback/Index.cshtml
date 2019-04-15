@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CoreShoppingAdminPortal.Models.Feedback>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>FeedbackIndex</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FeedbackId)</th>
+            <th>@Html.DisplayNameFor(model => model.EmailId)</th>
+            <th>@Html.DisplayNameFor(model => model.Comment)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var feedback in Model)
+        {
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => feedback.FeedbackId)</td>
+                <td>@Html.DisplayFor(modelItem => feedback.EmailId)</td>
+                <td>@Html.DisplayFor(modelItem => feedback.Comment)</td>
+
+                <td>
+                    <a asp-controller="Feedback" asp-action="Details"
+                       asp-route-id="@feedback.FeedbackId"><button type="button" class="btn btn-dark">Details</button></a>|
+                    
+                    <a asp-controller="Feedback" asp-action="Delete"
+                       asp-route-id="@feedback.FeedbackId"><button type="button" class="btn btn-danger">Delete</button></a>|
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

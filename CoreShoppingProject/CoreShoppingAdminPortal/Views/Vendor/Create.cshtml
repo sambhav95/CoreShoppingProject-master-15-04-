@@ -1,0 +1,28 @@
+﻿@model CoreShoppingAdminPortal.Models.Vendor
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Vendor Details</h2>
+<form asp-action="create" asp-controller="Vendor">
+    <label asp-for="VendorId"></label>
+    <input type="text" asp-for="VendorId" />
+    <br />
+    <label asp-for="VendorName"></label>
+    <input type="text" asp-for="VendorName" />
+    <br />
+    <label asp-for=" EmailId"></label>
+    <input type="text" asp-for=" EmailId" />
+    <br />
+    <label asp-for="PhoneNo"></label>
+    <input type="text" asp-for="PhoneNo" />
+    <br />
+    <label asp-for="VendorDescription"></label>
+    <input type="text" asp-for="VendorDescription" />
+    <br />
+
+    <input type="submit" value="Create Customer" />
+</form>
+
+

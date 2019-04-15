@@ -1,0 +1,64 @@
+﻿@model CoreEcommerceUserPanal.Models.Feedbacks
+@{
+    ViewData["Title"] = "Feedback";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<h2>Feedback</h2>
+<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="~/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/css/main.css">
+<div class="contact1">
+    <div class="container-contact1">
+        <div class="contact1-pic js-tilt" data-tilt>
+            <img src="~/images/img-01.png" alt="IMG">
+        </div>
+        <form class="contact1-form validate-form" asp-action="Feedback" asp-controller="Home">
+            <span class="contact1-form-title">
+                Get in touch
+            </span>
+            <div class="wrap-input1 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                <label asp-for="EmailId">EmailId</label>
+                <input class="input1" asp-for="EmailId" type="email" id="email" placeholder="Email">
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Phone No is required">
+                <label asp-for="PhoneNo">Phone No</label>
+                <input class="input1" asp-for="PhoneNo" type="number" id="phone" placeholder="Phone">
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Message is required">
+                <label asp-for="Comment">Comment</label>
+                <textarea class="input1" asp-for="Comment" id="comment" placeholder="Message"></textarea>
+                <span class="shadow-input1"></span>
+            </div>
+            <div class="wrap-input1 validate-input" data-validate="Phone No is required">
+                <label asp-for="CustomerId">Customer Id</label>
+
+                <select class="input1" asp-for="CustomerId" asp-items="ViewBag.feed"></select>
+            </div>  <br />
+            <div class="container-contact1-form-btn">
+                <button class="contact1-form-btn">
+                    <span>
+                        Send FeedBack
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>$('.js-tilt').tilt({
+			scale: 1.1
+		})</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');</script>
+<!--===============================================================================================-->
+<script src="~/js/main.js"></script>

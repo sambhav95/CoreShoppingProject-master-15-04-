@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CoreShoppingAdminPortal.Models.ProductCategory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .btn1 {
+        margin-right: 3500px;
+        margin-top: -10px;
+    }
+</style>
+
+<center><h2>Product Category Index</h2></center>
+    &nbsp;&nbsp;
+    <a asp-controller="ProductCategory" asp-action="Create"><button type="button" class="btn btn-info btn1">Create</button></a>
+    &nbsp;&nbsp;
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ProductCategoryId)</th>
+                <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                <th>@Html.DisplayNameFor(model => model.CategoryDescription)</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model)
+            {
+
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => category.ProductCategoryId)</td>
+                    <td>@Html.DisplayFor(modelItem => category.CategoryName)</td>
+                    <td>@Html.DisplayFor(modelItem => category.CategoryDescription)</td>
+
+
+                    <td>
+
+                        <a asp-controller="ProductCategory" asp-action="Details"
+                           asp-route-id="@category.ProductCategoryId"><button type="button" class="btn btn-dark">Details</button></a>|
+                        <a asp-controller="ProductCategory" asp-action="Edit"
+                           asp-route-id="@category.ProductCategoryId"><button type="button" class="btn btn-info">Edit</button></a>|
+                        <a asp-controller="ProductCategory" asp-action="Delete"
+                           asp-route-id="@category.ProductCategoryId"><button type="button" class="btn btn-danger">Delete</button></a>|
+
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+

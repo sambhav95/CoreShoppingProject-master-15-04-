@@ -1,0 +1,375 @@
+﻿@model CoreEcommerceUserPanal.Models.Customers
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = null;
+}
+<html>
+<head>
+
+    <script type="text/javascript">
+        function auto_fill_address() {
+            var same_addr = document.getElementById("same_residential_permanent").checked;
+            var resaddr = document.getElementById("residential_address").value;
+            var resphone = document.getElementById("residential_phone").value;
+            var rescountry = document.getElementById("residential_country").value;
+            var resstate = document.getElementById("residential_state").value;
+            var respin = document.getElementById("residential_zip").value;
+           
+            //alert(x);
+            if (same_addr) {
+                if ((resaddr == '' || resaddr == null) || (respin == '' || respin == null) || (resphone == '' || resphone == null) || (rescountry == '' || rescountry == null)
+                   || (resstate == '' || resstate == null))
+                {
+                    alert('please fill address and pincode');
+                    document.getElementById("same_residential_permanent").checked = false;
+                } else {
+                    document.getElementById("permanent_address").value = resaddr;
+                    document.getElementById("permanent_phone").value = resphone;
+                    document.getElementById("permanent_country").value = rescountry;
+                    document.getElementById("permanent_state").value = resstate;
+                    document.getElementById("permanent_pincode").value = respin;
+                    
+                }
+            }
+            else {
+                document.getElementById("permanent_address").value = '';
+                document.getElementById("permanent_phone").value = '';
+                document.getElementById("permanent_pincode").value = '';
+                document.getElementById("permanent_country").value = '';
+                document.getElementById("permanent_state").value = '';
+
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/Template.css" />
+</head>
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h2>Checkout form</h2>
+            <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div>
+        @foreach (var item in ViewBag.checkout)
+        {
+            ViewBag.i++;
+        }
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">@ViewBag.i</span>
+
+                </h4>
+
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <span class="text-muted">
+                            <h6 class="my-0" style="font-weight:bold;">Product Name</h6>
+                        </span>
+                        <span class="text-muted">
+                            <h6 class="my-0" style="font-weight:bold;">Price</h6>
+                        </span>
+                        <span class="text-muted">
+                            <h6 class="my-0" style="font-weight:bold;">Quantity</h6>
+                        </span>
+                        <span class="text-muted">
+                            <h6 class="my-0" style="font-weight:bold;">Sub Total</h6>
+                        </span>
+                    </li>
+                    @foreach (var item in ViewBag.checkout)
+                    {
+
+
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+
+                            <p class="card-text">@item.Products.ProductName</p>
+
+
+                            <p class="card-text">@item.Products.ProductPrice</p>
+
+                            <p class="card-text">@item.Quantity</p>
+
+                            <strong>@(item.Products.ProductPrice * item.Quantity)</strong>
+                        </li>
+
+                    }
+
+
+                </ul>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <b><span>Total </span></b>
+                        <strong>@ViewBag.total</strong>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-8 order-md-1">
+
+                @*<form asp-action="Checkout" class="needs-validation" novalidate onsubmit="return validateForm()" method="post" >
+                    http://www.javatpoint.com/javascriptpages/valid.jsp*@
+                <form name="myform" method="post">
+
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+
+                            <label asp-for="FirstName">First name</label>
+                            <input asp-for="FirstName" type="text" class="form-control" id="firstName" placeholder="" value="@ViewBag.cus.FirstName" required>
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LastName">Last name</label>
+                            <input asp-for="LastName" type="text" class="form-control" id="lastName" placeholder="" value="@ViewBag.cus.LastName" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="UserName">Username</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"></span>
+                            </div>
+                            <input asp-for="UserName" type="text" class="form-control" id="username" placeholder="Username" value="@ViewBag.cus.UserName" required>
+                            <div class="invalid-feedback" style="width: 100%">
+                                Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Gender">Gender <span class="text-muted"></span></label>
+                        <input asp-for="Gender" required type="text" class="form-control" id="Gender" value="@ViewBag.cus.Gender">
+                       
+                    </div>
+                     <div class="mb-3">
+                        <label asp-for="EmailId">Email <span class="text-muted"></span></label>
+                        <input asp-for="EmailId" required type="email" class="form-control" id="email" placeholder="you@example.com" value="@ViewBag.cus.EmailId">
+                        <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+                    @*<div class="mb-3">
+            <label asp-for="Password">Password <span class="text-muted"></span></label>
+            <input asp-for="Password" required type="password" class="form-control" id="password" name="password" value="@ViewBag.cus.Password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+
+        </div>*@
+
+                    <h4 class="mb-3">Billing address</h4>
+                    <div class="mb-3">
+                        <label asp-for="Address">Address</label>
+                        <input asp-for="Address" type="text" class="form-control" id="residential_address" placeholder="1234 Main St" value="@ViewBag.cus.Address" required>
+                        <div class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PhoneNo">Phone Number</label>
+                        <input asp-for="PhoneNo" type="number" class="form-control" id="residential_phone" placeholder="Phone Number" value="@ViewBag.cus.PhoneNo" required>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your Phone Number
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label asp-for="Country">Country</label>
+                            <select asp-for="Country" id="residential_country" class="form-control" type="Country">
+
+                                <option value="@ViewBag.cus.Country">@ViewBag.cus.Country</option>
+                                <option>Afghanistan</option>
+                                <option>Bhutan</option>
+                                <option>Bolivia</option>
+                                <option>Canada</option>
+                                <option>Cape Verde</option>
+                                <option>Dominica</option>
+                                <option>Dominican Republic</option>
+                                <option>East Timor</option>
+                                <option>Ecuador</option>
+                                <option>Egypt</option>
+                                <option>Ethiopia</option>
+                                <option>Finland</option>
+                                <option>France</option>
+                                <option>Greece</option>
+                                <option>Greenland</option>
+                                <option>Grenada</option>
+                                <option>Guyana</option>
+                                <option>Haiti</option>
+                                <option>Hungary</option>
+                                <option>Iceland</option>
+                                <option>India</option>
+                                <option>Indonesia</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="State">State</label>
+                            <select asp-for="State" id="residential_state" class="form-control" type="State">
+
+                                <option value="@ViewBag.cus.State">@ViewBag.cus.State</option>
+                                <option>Andaman and Nicobar Islands</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Arunachal Pradesh</option>
+                                <option>Assam</option>
+                                <option>Bihar</option>
+                                <option>Chandigarh</option>
+                                <option>Chhattisgarh</option>
+                                <option>Dadra and Nagar Haveli</option>
+                                <option>Daman and Diu</option>
+                                <option>Delhi</option>
+                                <option>Goa</option>
+                                <option>Gujarat</option>
+                                <option>Haryana</option>
+                                <option>Himachal Pradesh</option>
+                                <option>Jammu and Kashmir</option>
+                                <option>Jharkhand</option>
+                                <option>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Lakshadweep</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Maharashtra</option>
+                                <option>Manipur</option>
+                                <option>Meghalaya</option>
+                                <option>Mizoram</option>
+                                <option>Nagaland</option>
+                                <option>Orissa</option>
+                                <option>Pondicherry</option>
+                                <option>Punjab</option>
+                                <option>Rajasthan</option>
+                                <option>Sikkim</option>
+                                <option>Tamil Nadu</option>
+                                <option>Tripura</option>
+                                <option>Uttaranchal</option>
+                                <option>Uttar Pradesh</option>
+                                <option>West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="Zip">Zip</label>
+                            <input asp-for="Zip" type="number" class="form-control" id="residential_zip" placeholder="Zip" value="@ViewBag.cus.Zip" required>
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="custom-control custom-checkbox">
+                        <input asp-for="ShippingAddress" type="checkbox" id="same_residential_permanent" onclick="auto_fill_address();">
+                        <label asp-for="ShippingAddress" for="same_residential_permanent">Shipping address is the same as my billing address</label>
+                    </div>
+                    <br />
+                    <h4 class="mb-3">Shipping address</h4>
+                    <div class="mb-3">
+                        <label asp-for="Address">Address</label>
+                        <input asp-for="Address" type="text" class="form-control" id="permanent_address" placeholder="1234 Main St" required>
+                        <div class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PhoneNo">Phone Number</label>
+                        <input asp-for="PhoneNo" type="number" class="form-control" id="permanent_phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your Phone Number
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label asp-for="Country">Country</label>
+                            <input asp-for="Country" type="text" class="form-control" id="permanent_country" placeholder="1234 Main St" required>
+
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="State">State</label>
+                            <input asp-for="State" type="text" class="form-control" id="permanent_state" placeholder="1234 Main St" required>
+
+
+
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="Zip">Zip</label>
+                            <input asp-for="Zip" type="number" class="form-control" id="permanent_pincode" placeholder="Zip" required>
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*<div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="save-info">
+            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+        </div>*@
+
+                    @*<h4 class="mb-3">Payment</h4>
+
+        <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                <label class="custom-control-label" for="credit">Credit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="debit">Debit card</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="paypal">Paypal</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="cc-name">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                    Name on card is required
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                    Credit card number is required
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                    Expiration date required
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="cc-expiration">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                    Security code required
+                </div>
+            </div>
+        </div>*@
+                    <hr class="mb-4">
+                    <button value="Checkout" onsubmit="return validateform();" class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,39 @@
+﻿@model CoreShoppingAdminPortal.Models.Brand
+@{ ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Are you sure you want to delete ? </h3>
+&nbsp; &nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.BrandId)
+            </th>
+            <th scope="col"> @Html.DisplayNameFor(Model => Model.BrandName)</th>
+            <th scope="col"> @Html.DisplayNameFor(Model => Model.BrandDescription)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandDescription)
+            </td>
+        </tr>
+    </tbody>
+</table>
+@using (Html.BeginForm("Delete", "Brand", FormMethod.Post))
+{
+    <center>
+        <input type="submit" value="Delete" class="btn btn-success" />&nbsp;
+        <button class="btn btn-success" asp-controller="Brand" asp-action="Index">
+            Back
+        </button>
+    </center>
+}

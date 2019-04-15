@@ -1,0 +1,60 @@
+﻿@model CoreShoppingAdminPortal.Models.Product
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Add Product</h2>
+&nbsp; &nbsp;
+<form asp-action="Create" asp-controller="Product">
+    <div class="form-group row">
+        <label for="text" class="col-sm-2 col-form-label" asp-for="ProductName">Product Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Text" asp-for="ProductName" />
+        </div> <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for=" ProductQty">Product Qty</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" placeholder="Numeric" asp-for=" ProductQty" />
+        </div>  <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="ProductPrice">Product Price</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" placeholder="Numberic" asp-for="ProductPrice" />
+        </div>  <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="ProductImage">Product Image</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" asp-for="ProductImage" />
+        </div>
+        <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="ProductDescription">Product Description</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="Text" asp-for="ProductDescription" />
+        </div> <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="VendorId">Vendor Id</label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="VendorId" asp-items="ViewBag.products"></select>
+        </div>  <br />
+
+        <label for="text" class="col-sm-2 col-form-label" asp-for="ProductCategoryId">Product CategoryId</label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="ProductCategoryId" asp-items="ViewBag.products1"></select>
+        </div> <br />
+        <label for="text" class="col-sm-2 col-form-label" asp-for="BrandId">BrandId</label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="BrandId" asp-items="ViewBag.products2"></select>
+        </div> <br />
+    </div>
+        <center>
+            <input type="submit" value="Submit" class="btn btn-success" />&nbsp;
+            <button class="btn btn-success" asp-controller="Product" asp-action="Index">
+
+                Back
+            </button>
+        </center>
+</form>
+
+

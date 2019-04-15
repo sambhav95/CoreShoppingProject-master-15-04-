@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CoreShoppingAdminPortal.Models.Vendor>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.VendorId)</th>
+            <th>@Html.DisplayNameFor(model => model.VendorName)</th>
+            <th>@Html.DisplayNameFor(model => model.EmailId)</th>
+            <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
+            <th>@Html.DisplayNameFor(model => model.VendorDescription)</th>
+
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ordr in Model)
+        {
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => ordr.VendorId)</td>
+                <td>@Html.DisplayFor(modelItem => ordr.VendorName)</td>
+                <td>@Html.DisplayFor(modelItem => ordr.EmailId)</td>
+                <td>@Html.DisplayFor(modelItem => ordr.PhoneNo))</td>
+                <td>@Html.DisplayFor(modelItem => ordr.VendorDescription)</td>
+
+
+                <td>
+
+                    <a asp-controller="Order" asp-action="Index"
+                       asp-route-id="@ordr.VendorId">Details</a>|
+                    <a asp-controller="Order" asp-action="Index"
+                       asp-route-id="@ordr.VendorId">Edit</a>|
+                    @*<a asp-controller="Order" asp-action="Index"
+                        asp-route-id="@ordr.VendorId">Delete</a>*@
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+

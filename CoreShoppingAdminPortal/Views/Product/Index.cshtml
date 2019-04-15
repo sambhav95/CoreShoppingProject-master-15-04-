@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CoreShoppingAdminPortal.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .btn1 {
+        margin-right: 3500px;
+        margin-top: -10px;
+    }
+</style>
+
+<center><h2>Product Index</h2></center>
+&nbsp;&nbsp;
+<a asp-controller="Product" asp-action="Create"><button type="button" class="btn btn-info btn1">Create</button></a>
+&nbsp;&nbsp; &nbsp;&nbsp;
+<br />
+<table class="table">
+    <thead>
+
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ProductId)</th>
+            <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+            <th>@Html.DisplayNameFor(model => model.ProductQty)</th>
+
+
+
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pro in Model)
+        {
+
+            <tr>
+                <td>@Html.DisplayFor(modelItem => pro.ProductId)</td>
+                <td>@Html.DisplayFor(modelItem => pro.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => pro.ProductQty)</td>
+
+                <td>
+                    <a asp-controller="Product" asp-action="Details" asp-route-id="@pro.ProductId"><button type="button" class="btn btn-dark">Details</button></a>|
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@pro.ProductId"><button type="button" class="btn btn-info">Edit</button></a>|
+                    <a asp-controller="Product" asp-action="Delete" asp-route-id="@pro.ProductId"><button type="button" class="btn btn-danger">Delete</button></a>|
+
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>

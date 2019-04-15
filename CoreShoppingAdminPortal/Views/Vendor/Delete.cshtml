@@ -1,0 +1,47 @@
+﻿@model CoreShoppingAdminPortal.Models.Vendor
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Are you sure you want to delete ? </h3>
+&nbsp; &nbsp; &nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorName)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.EmailId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.PhoneNo)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.VendorDescription)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+            <td>@Html.DisplayFor(Model => Model.VendorId)</td>
+            <td>@Html.DisplayFor(Model => Model.VendorName)</td>
+            <td>@Html.DisplayFor(Model => Model.EmailId)</td>
+            <td>@Html.DisplayFor(Model => Model.PhoneNo)</td>
+            <td>@Html.DisplayFor(Model => Model.VendorDescription)</td>
+
+        </tr>
+
+
+    </tbody>
+</table>
+<br />
+
+@using (Html.BeginForm("Delete", "Vendor", FormMethod.Post))
+{
+    <center>
+        <input type="submit" value="Delete" class="btn btn-success" />&nbsp;
+        <button class="btn btn-success" asp-controller="Vendor" asp-action="Index">
+
+            Back
+        </button>
+    </center>
+}
+

@@ -1,0 +1,52 @@
+﻿@model CoreEcommerceUserPanal.Models.Customers
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+&nbsp;&nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+
+            <th scope="col">@Html.DisplayNameFor(Model => Model.FirstName)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.LastName)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.EmailId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Password)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.UserName)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Address)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.PhoneNo)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Country)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.State)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Zip)</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+
+
+            <th> @Html.DisplayFor(Model => Model.FirstName)</th>
+            <th> @Html.DisplayFor(Model => Model.LastName)</th>
+            <th>@Html.DisplayFor(Model => Model.EmailId)</th>
+            <th>@Html.DisplayFor(Model => Model.Password)</th>
+            <th>@Html.DisplayFor(Model => Model.UserName)</th>
+            <th>@Html.DisplayFor(Model => Model.Address)</th>
+            <th>@Html.DisplayFor(Model => Model.PhoneNo)</th>
+            <th>@Html.DisplayFor(Model => Model.Country)</th>
+            <th>@Html.DisplayFor(Model => Model.State)</th>
+            <th>@Html.DisplayFor(Model => Model.Zip)</th>
+
+        </tr>
+
+
+    </tbody>
+</table>
+<center>
+    <a asp-controller="Home" asp-action="About"><button type="button" class="btn btn-success btn1">Back</button></a>
+</center>

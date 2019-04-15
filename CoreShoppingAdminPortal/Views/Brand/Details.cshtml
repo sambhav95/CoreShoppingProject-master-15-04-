@@ -1,0 +1,41 @@
+﻿@model CoreShoppingAdminPortal.Models.Brand
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Brand Details</h2>
+&nbsp;&nbsp;
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.BrandId)
+            </th>
+
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.BrandName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(Model => Model.BrandDescription)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandId)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandDescription)
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+<center>   @Html.ActionLink("Back to List", "Index")</center>
+
+

@@ -1,0 +1,31 @@
+﻿@model CoreShoppingAdminPortal.Models.Feedback
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Feedback Details</h2>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.FeedbackId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.EmailId)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.Comment)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.PhoneNo)</th>
+            <th scope="col">@Html.DisplayNameFor(Model => Model.CustomerId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.FeedbackId)</td>
+            <td>@Html.DisplayFor(Model => Model.EmailId)</td>
+            <td>@Html.DisplayFor(Model => Model.Comment)</td>
+            <td>@Html.DisplayFor(Model => Model.PhoneNo)</td>
+            <td>@Html.DisplayFor(Model => Model.CustomerId)</td>
+        </tr>
+
+    </tbody>
+</table>
+<center>
+    <a asp-controller="Feedback" asp-action="Index"><button type="button" class="btn btn-success btn1">Back</button></a>
+</center>
