@@ -69,7 +69,47 @@ namespace CoreEcommerceUserPanal.Controllers
                 else
                 {
                     ViewBag.Error = "Invalid credentials";
-                    return View("Index");
+                    return View("Login");
+                }
+            }
+        }
+        public IActionResult Login1()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+
+        public ActionResult Login1(string username, string password)
+        {
+
+
+            var user = _context.Customers.Where(a => a.UserName == username).SingleOrDefault();
+            ViewBag.cust = user;
+            if (user == null)
+            {
+                ViewBag.Error = "Invalid Credentials";
+                return View("Login");
+            }
+            else
+            {
+                var userName = user.UserName;
+                int custId = ViewBag.cust.CustomerId;
+                if (username != null && password != null && username.Equals(userName) && password.Equals(user.Password))
+                {
+                    HttpContext.Session.SetString("uname", username);
+                    SessionHelper.SetObjectAsJson(HttpContext.Session, "cust", user);
+                    HttpContext.Session.SetString("logout", userName);
+                    return RedirectToAction("Index", "Home", new
+                    {
+                        @id = custId
+                    });
+                }
+                else
+                {
+                    ViewBag.Error = "Invalid credentials";
+                    return View("Login");
                 }
             }
         }

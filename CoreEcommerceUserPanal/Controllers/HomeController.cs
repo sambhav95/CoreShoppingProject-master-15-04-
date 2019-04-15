@@ -14,12 +14,17 @@ namespace CoreEcommerceUserPanal.Controllers
     
     public class HomeController : Controller
     {
-        ShoppingProjectFinalContext context = new ShoppingProjectFinalContext();
-        
-         [HttpGet]
+        //ShoppingProjectFinalContext context = new ShoppingProjectFinalContext();
+        private readonly ShoppingProjectFinalContext _context;
+
+        public HomeController(ShoppingProjectFinalContext context)
+        {
+            _context = context;
+        }
+        [HttpGet]
         public IActionResult Index()
         {
-            var product = context.Products.ToList();
+            var product = _context.Products.ToList();
             int j = 0;
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             int i = 0;
@@ -55,6 +60,7 @@ namespace CoreEcommerceUserPanal.Controllers
                 return View("Index");
             }
         }
+        
         public IActionResult Display()
         {
             return View();
@@ -92,14 +98,14 @@ namespace CoreEcommerceUserPanal.Controllers
         [HttpGet]
         public ViewResult Feedback()
         {
-            ViewBag.Feed = new SelectList(context.Customers, "CustomerId", "UserName");
+            ViewBag.Feed = new SelectList(_context.Customers, "CustomerId", "UserName");
             return View();
         }
         [HttpPost]
         public ActionResult Feedback(Feedbacks fed)
         {
-            context.Feedbacks.Add(fed);
-            context.SaveChanges();
+            _context.Feedbacks.Add(fed);
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
