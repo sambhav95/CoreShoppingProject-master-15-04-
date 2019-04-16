@@ -37,5 +37,6 @@ namespace CoreShoppingAdminPortal.Models
        
         public List<Order> Orders { get; set; }
         public List<Feedback> Feedbacks { get; set; }
+      
     }
 }

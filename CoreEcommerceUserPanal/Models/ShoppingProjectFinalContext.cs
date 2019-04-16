@@ -22,6 +22,7 @@ namespace CoreEcommerceUserPanal.Models
         public virtual DbSet<Feedbacks> Feedbacks { get; set; }
         public virtual DbSet<OrderProducts> OrderProducts { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Vendors> Vendors { get; set; }
 
@@ -29,8 +30,8 @@ namespace CoreEcommerceUserPanal.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-             //   optionsBuilder.UseSqlServer("Server=TRD-518; Database=ShoppingProjectFinal; Integrated Security=true;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=TRD-518; Database=ShoppingProjectFinal; Integrated Security=true;");
             }
         }
 
@@ -95,6 +96,17 @@ namespace CoreEcommerceUserPanal.Models
                     .HasForeignKey(d => d.CustomerId);
             });
 
+            modelBuilder.Entity<Payments>(entity =>
+            {
+                entity.HasKey(e => e.PaymentId);
+
+                entity.HasIndex(e => e.OrderId);
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Payments)
+                    .HasForeignKey(d => d.OrderId);
+            });
+
             modelBuilder.Entity<Products>(entity =>
             {
                 entity.HasKey(e => e.ProductId);
@@ -122,16 +134,6 @@ namespace CoreEcommerceUserPanal.Models
             {
                 entity.HasKey(e => e.VendorId);
             });
-
-            modelBuilder.Entity<Categories>(entity =>
-            {
-                entity.Property(e => e.CategoryName)
-                .HasColumnName("CategoryName")
-                .HasMaxLength(30)
-                .IsUnicode(false);
-            });
-            base.OnModelCreating(modelBuilder);
-
         }
     }
 }

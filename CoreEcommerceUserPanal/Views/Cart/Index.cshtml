@@ -2,7 +2,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-
 <h2>Cart Page</h2>
 <table class="table table-hover">
     <tr>
@@ -14,23 +13,21 @@
         <th>Quantity</th>
         <th>Sub Total</th>
     </tr>
-
     @foreach (var item in ViewBag.cart)
     {
-    <tr>
-        <td><a asp-controller="cart" asp-action="Remove" asp-route-id="@item.Products.ProductId">Remove</a></td>
-        <td>@item.Products.ProductId</td>
-        <td>@item.Products.ProductName</td>
-        <td><img src="@item.Products.ProductImage" width="60" /></td>
-
-        <td>@item.Products.ProductPrice</td>
-        <td> <a class="btn btn-default" asp-controller="cart" asp-action="Minus" asp-route-id="@item.Products.ProductId">-</a>@item.Quantity
-        <a class="btn btn-default" asp-controller="cart" asp-action="Plus" asp-route-id="@item.Products.ProductId">+</a></td>
-
-        <td>@(item.Products.ProductPrice * item.Quantity)</td>
-    </tr>
+        <tr>
+            <td><a asp-controller="cart" asp-action="Remove" asp-route-id="@item.Products.ProductId">Remove</a></td>
+            <td>@item.Products.ProductId</td>
+            <td>@item.Products.ProductName</td>
+            <td><img src="@item.Products.ProductImage" width="60" /></td>
+            <td>@item.Products.ProductPrice</td>
+            <td>
+                <a class="btn btn-default" asp-controller="cart" asp-action="Minus" asp-route-id="@item.Products.ProductId">-</a>@item.Quantity
+                <a class="btn btn-default" asp-controller="cart" asp-action="Plus" asp-route-id="@item.Products.ProductId">+</a>
+            </td>
+            <td>@(item.Products.ProductPrice * item.Quantity)</td>
+        </tr>
     }
-
     <tr>
         <td align="right" colspan="7">Sum</td>
         <td>
@@ -38,8 +35,13 @@
         </td>
     </tr>
 
-
 </table>
-<br/>
+<br />
 <a asp-controller="Home" asp-action="Index"> Continue Shopping</a>
-<a asp-controller="Customers" asp-action="Login1"> CheckOut</a>
+@if (ViewBag.i == 0)
+{
+    <a asp-controller="Customers" asp-action="Login1"> CheckOut</a>}
+else
+{
+    <a asp-controller="cart" asp-action="checkout"> CheckOut</a>
+}

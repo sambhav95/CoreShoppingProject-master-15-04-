@@ -1,11 +1,12 @@
 ﻿@model CoreEcommerceUserPanal.Models.Customers
+@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
 @{
     ViewData["Title"] = "Checkout";
     Layout = null;
 }
 <html>
 <head>
-
     <script type="text/javascript">
         function auto_fill_address() {
             var same_addr = document.getElementById("same_residential_permanent").checked;
@@ -14,12 +15,11 @@
             var rescountry = document.getElementById("residential_country").value;
             var resstate = document.getElementById("residential_state").value;
             var respin = document.getElementById("residential_zip").value;
-           
+
             //alert(x);
             if (same_addr) {
                 if ((resaddr == '' || resaddr == null) || (respin == '' || respin == null) || (resphone == '' || resphone == null) || (rescountry == '' || rescountry == null)
-                   || (resstate == '' || resstate == null))
-                {
+                    || (resstate == '' || resstate == null)) {
                     alert('please fill address and pincode');
                     document.getElementById("same_residential_permanent").checked = false;
                 } else {
@@ -28,7 +28,7 @@
                     document.getElementById("permanent_country").value = rescountry;
                     document.getElementById("permanent_state").value = resstate;
                     document.getElementById("permanent_pincode").value = respin;
-                    
+
                 }
             }
             else {
@@ -41,17 +41,15 @@
             }
         }
     </script>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/Template.css" />
 </head>
 <body class="bg-light">
-
     <div class="container">
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h2>Checkout form</h2>
-            <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+
+            <h2>Checkout</h2>
+
         </div>
         @foreach (var item in ViewBag.checkout)
         {
@@ -62,9 +60,7 @@
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
                     <span class="badge badge-secondary badge-pill">@ViewBag.i</span>
-
                 </h4>
-
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <span class="text-muted">
@@ -85,19 +81,14 @@
 
 
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
-
                             <p class="card-text">@item.Products.ProductName</p>
 
-
                             <p class="card-text">@item.Products.ProductPrice</p>
-
                             <p class="card-text">@item.Quantity</p>
-
                             <strong>@(item.Products.ProductPrice * item.Quantity)</strong>
                         </li>
 
                     }
-
 
                 </ul>
                 <ul class="list-group mb-3">
@@ -106,18 +97,14 @@
                         <strong>@ViewBag.total</strong>
                     </li>
                 </ul>
-
             </div>
             <div class="col-md-8 order-md-1">
-
                 @*<form asp-action="Checkout" class="needs-validation" novalidate onsubmit="return validateForm()" method="post" >
                     http://www.javatpoint.com/javascriptpages/valid.jsp*@
                 <form name="myform" method="post">
 
-
                     <div class="row">
                         <div class="col-md-6 mb-3">
-
                             <label asp-for="FirstName">First name</label>
                             <input asp-for="FirstName" type="text" class="form-control" id="firstName" placeholder="" value="@ViewBag.cus.FirstName" required>
                             <div class="invalid-feedback">
@@ -132,7 +119,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <label asp-for="UserName">Username</label>
                         <div class="input-group">
@@ -148,9 +134,9 @@
                     <div class="mb-3">
                         <label asp-for="Gender">Gender <span class="text-muted"></span></label>
                         <input asp-for="Gender" required type="text" class="form-control" id="Gender" value="@ViewBag.cus.Gender">
-                       
+
                     </div>
-                     <div class="mb-3">
+                    <div class="mb-3">
                         <label asp-for="EmailId">Email <span class="text-muted"></span></label>
                         <input asp-for="EmailId" required type="email" class="form-control" id="email" placeholder="you@example.com" value="@ViewBag.cus.EmailId">
                         <div class="invalid-feedback">
@@ -158,11 +144,10 @@
                         </div>
                     </div>
                     @*<div class="mb-3">
-            <label asp-for="Password">Password <span class="text-muted"></span></label>
-            <input asp-for="Password" required type="password" class="form-control" id="password" name="password" value="@ViewBag.cus.Password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                            <label asp-for="Password">Password <span class="text-muted"></span></label>
+                            <input asp-for="Password" required type="password" class="form-control" id="password" name="password" value="@ViewBag.cus.Password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
 
-        </div>*@
-
+                        </div>*@
                     <h4 class="mb-3">Billing address</h4>
                     <div class="mb-3">
                         <label asp-for="Address">Address</label>
@@ -178,12 +163,10 @@
                     <div class="invalid-feedback">
                         Please enter your Phone Number
                     </div>
-
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label asp-for="Country">Country</label>
                             <select asp-for="Country" id="residential_country" class="form-control" type="Country">
-
                                 <option value="@ViewBag.cus.Country">@ViewBag.cus.Country</option>
                                 <option>Afghanistan</option>
                                 <option>Bhutan</option>
@@ -210,11 +193,9 @@
                             </select>
                         </div>
 
-
                         <div class="col-md-4 mb-3">
                             <label asp-for="State">State</label>
                             <select asp-for="State" id="residential_state" class="form-control" type="State">
-
                                 <option value="@ViewBag.cus.State">@ViewBag.cus.State</option>
                                 <option>Andaman and Nicobar Islands</option>
                                 <option>Andhra Pradesh</option>
@@ -259,7 +240,6 @@
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
-
                         </div>
                     </div>
                     <hr class="mb-4">
@@ -287,13 +267,10 @@
                         <div class="col-md-5 mb-3">
                             <label asp-for="Country">Country</label>
                             <input asp-for="Country" type="text" class="form-control" id="permanent_country" placeholder="1234 Main St" required>
-
                         </div>
                         <div class="col-md-4 mb-3">
                             <label asp-for="State">State</label>
                             <input asp-for="State" type="text" class="form-control" id="permanent_state" placeholder="1234 Main St" required>
-
-
 
                         </div>
                         <div class="col-md-3 mb-3">
@@ -302,66 +279,70 @@
                             <div class="invalid-feedback">
                                 Zip code required.
                             </div>
-
                         </div>
                     </div>
-
                     @*<div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="save-info">
-            <label class="custom-control-label" for="save-info">Save this information for next time</label>
-        </div>*@
-
+                            <input type="checkbox" class="custom-control-input" id="save-info">
+                            <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                        </div>*@
                     @*<h4 class="mb-3">Payment</h4>
 
-        <div class="d-block my-3">
-            <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Credit card</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Debit card</label>
-            </div>
-            <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Paypal</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                    Name on card is required
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                    Credit card number is required
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                    Expiration date required
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="cc-expiration">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                    Security code required
-                </div>
-            </div>
-        </div>*@
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <label class="custom-control-label" for="credit">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="debit">Debit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback">
+                                    Name on card is required
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Credit card number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Security code required
+                                </div>
+                            </div>
+                        </div>*@
                     <hr class="mb-4">
-                    <button value="Checkout" onsubmit="return validateform();" class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                    @*<button value="Checkout" onsubmit="return validateform();" class="btn btn-primary btn-lg btn-block" type="submit">Proceed To Payment</button>*@
+                    <script src="//checkout.stripe.com/v2/checkout.js"
+                            class="stripe-button"
+                            data-key="@Stripe.Value.PublishableKey"
+                            data-locale="auto"
+                            data-description="Sample Charge"
+                            data-amount="500">
+                    </script>
                 </form>
             </div>
         </div>
@@ -370,6 +351,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
 </html>
-
