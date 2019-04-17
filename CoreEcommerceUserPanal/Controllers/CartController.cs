@@ -261,7 +261,7 @@ namespace CoreEcommerceUserPanal.Controllers
         public IActionResult Invoice()
         {
             int customerid = int.Parse(TempData["cust"].ToString());
-            //int paymentid=int.Parse(TempData["pay"].ToString());
+            int paymentid=int.Parse(TempData["pay"].ToString());
             Customers customer = context.Customers.Where(x => x.CustomerId == customerid).SingleOrDefault();
             ViewBag.Customers = customer;
             //Payments payment=_context.Payments.Where(x=>x.PaymentId==paymentid).SingleOrDefault();

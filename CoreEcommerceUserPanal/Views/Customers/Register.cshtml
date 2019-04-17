@@ -3,28 +3,29 @@
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Default.cshtml";
 }
-
+<style>
+    .c{
+        text-align:center;
+    }
+</style>
 
 <form asp-action="Register" asp-controller="Customers">
     <div class="row">
         <h4 class="col-12 mb-3">Register</h4>
         <div class="col-md-6 mb-3">
-
-            <label asp-for="FirstName"><b>First Name</b></label>
+            @*<label asp-for="FirstName"><b>First Name</b></label>*@
             <input type="text" asp-for="FirstName" class="form-control" placeholder="Enter First Name" required>
-
         </div>
         <div class="col-md-6 mb-3">
-            <label asp-for="LastName"><b>Last Name</b></label>
+            @*<label asp-for="LastName"><b>Last Name</b></label>*@
             <input type="text" asp-for="LastName" class="form-control" placeholder="Enter Last Name" required>
-
         </div>
         <div class="col-12 mb-3">
-            <label asp-for="UserName"><b>User Name</b></label>
+            @*<label asp-for="UserName"><b>User Name</b></label>*@
             <input type="text" asp-for="UserName" class="form-control" placeholder="Enter User Name" required>
         </div>
         <div class="col-12 mb-3">
-            <label asp-for="Gender">Gender </label>
+            @*<label asp-for="Gender">Gender </label>*@
             <select asp-for="Gender" id="Gender" class="form-control">
                 <option value="">Selected</option>
                 <option>Male</option>
@@ -32,28 +33,25 @@
             </select>
         </div>
         <div class="col-12 mb-3">
-            <label asp-for="Password"><b>Password</b></label>
+            @*<label asp-for="Password"><b>Password</b></label>*@
             <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password" required>
         </div>
         <div class="col-12 mb-3">
-            <label asp-for="EmailId"><b>Email</b></label>
+            @*<label asp-for="EmailId"><b>Email</b></label>*@
             <input type="email" asp-for="EmailId" class="form-control" placeholder="Enter Email" required>
         </div>
-
         <br />
         <hr />
-        <h4 class="col-12 mb-3">Billing Address</h4>
+        @*<h4 class="col-12 mb-3">Billing Address</h4>*@
         <hr />
         <br />
-
         <div class="col-12 mb-3">
-            <label asp-for="Address"><b>Address</b></label>
+            @*<label asp-for="Address"><b>Address</b></label>*@
             <input type="text" asp-for="Address" class="form-control" placeholder="Enter Address" required>
         </div>
 
-
         <div class="col-12 mb-3">
-            <label asp-for="Country"><b>Country</b></label>
+            @*<label asp-for="Country"><b>Country</b></label>*@
             <select asp-for="Country" id="Country" class="form-control" required>
                 <option value="">Select Country</option>
                 <option>Afghanistan</option>
@@ -80,9 +78,8 @@
                 <option>Indonesia</option>
             </select>
         </div>
-
         <div class="col-12 mb-3">
-            <label asp-for="State"><b>State</b></label>
+            @*<label asp-for="State"><b>State</b></label>*@
             <select asp-for="State" id="State" class="form-control" required>
                 <option value="">Select State</option>
                 <option>Andaman and Nicobar Islands</option>
@@ -123,20 +120,20 @@
             </select>
         </div>
 
-
         <div class="col-md-6 mb-3">
-            <label asp-for="Zip"><b>Zip Code</b></label>
+            @*<label asp-for="Zip"><b>Zip Code</b></label>*@
             <input type="text" asp-for="Zip" class="form-control" placeholder="Enter Zip Code" required>
         </div>
         <div class="col-md-6 mb-3">
-            <label asp-for="PhoneNo"><b>PhoneNo</b></label>
+            @*<label asp-for="PhoneNo"><b>PhoneNo</b></label>*@
             <input type="text" asp-for="PhoneNo" class="form-control" placeholder="Enter PhoneNo" required>
         </div>
 
-
         <hr class="mb-4">
-        <button type="submit" class="btn btn-sm btn-outline-secondary">Submit</button>
+
 
 
     </div>
+    <br/>
+    <button type="submit" class="btn btn-dark c">Submit</button>
 </form>

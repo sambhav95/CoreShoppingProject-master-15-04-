@@ -9,53 +9,53 @@
 &nbsp;&nbsp;
 <form asp-action="custEdit" asp-controller="Customers">
     <div class="form-group row">
-        <input type="hidden" asp-for="CustomerId" />
+
         <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="FirstName">First Name </label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="FirstName" />
         </div>
         <br />
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="LastName">LastName</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="LastName" />
         </div>
-
+        <br />
         <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="UserName">UserName</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="UserName" />
         </div>
-
         <br />
-
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="EmailId">Email Id</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="EmailId" />
         </div>
-      
-
+        <br />
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="Gender">Gender</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="Gender" />
         </div>
         <br />
-
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="PhoneNo">PhoneNo</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="PhoneNo" />
         </div>
         <br />
-
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="Address">Address</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="Address" />
         </div>
         <br />
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="Country">Country</label>
         <div class="col-sm-10">
             <select asp-for="Country" id="residential_country" class="form-control" type="Country">
-
                 <option>Afghanistan</option>
                 <option>Bhutan</option>
                 <option>Bolivia</option>
@@ -80,11 +80,11 @@
                 <option>Indonesia</option>
             </select>
         </div>
-
+        <br />
+        <br />
         <label class="col-sm-2 col-form-label" asp-for="State">State</label>
         <div class="col-sm-10">
             <select asp-for="State" id="residential_state" class="form-control" type="State">
-
                 <option>Andaman and Nicobar Islands</option>
                 <option>Andhra Pradesh</option>
                 <option>Arunachal Pradesh</option>
@@ -122,15 +122,19 @@
                 <option>West Bengal</option>
             </select>
         </div>
+        <br />
+        <br />
         <label for="text" class="col-sm-2 col-form-label" asp-for="Zip">Zip</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="Zip" />
         </div>
         <br />
     </div>
+    <br />
     <center>
         <input type="submit" value="Edit" class="btn btn-success" />&nbsp;
-        <button class="btn btn-success" asp-controller="Home" asp-action="About">Back
-       </button>
+        <button class="btn btn-success" asp-controller="Home" asp-action="About">
+            Back
+        </button>
     </center>
 </form>

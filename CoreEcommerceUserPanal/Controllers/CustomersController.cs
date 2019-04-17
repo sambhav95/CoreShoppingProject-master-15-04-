@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using CoreEcommerceUserPanal.Helpers;
 using CoreEcommerceUserPanal.Models;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +32,7 @@ namespace CoreEcommerceUserPanal.Controllers
         [HttpPost]
         public ActionResult Register(Customers cust)
         {
+           
             _context.Customers.Add(cust);
             _context.SaveChanges();
             HttpContext.Session.SetString("logout", cust.UserName);
@@ -38,13 +42,13 @@ namespace CoreEcommerceUserPanal.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
 
         public ActionResult Login(string username, string password)
         {
+
            
-            
             var user = _context.Customers.Where(a => a.UserName == username).SingleOrDefault();
             ViewBag.cust = user;
             if (user == null)
@@ -200,6 +204,10 @@ namespace CoreEcommerceUserPanal.Controllers
             ViewBag.p = products;
             return View();
         }
+
+        
+
+      
 
 
     }

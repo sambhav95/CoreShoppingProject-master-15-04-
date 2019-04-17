@@ -1,52 +1,52 @@
 ﻿@model CoreEcommerceUserPanal.Models.Customers
-
 @{
     ViewData["Title"] = "Profile";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/css/css1/UserProfile.css" rel="stylesheet" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<h5>
+    User Profile
 
-<h2>Details</h2>
+</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 img">
+       
+            <img src="~/images/profile.png" class="img-rounded">
+        </div>
+        <div class="col-md-6 details">
+        
+               
+              
 
-&nbsp;&nbsp;
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
+                   
+         
+         
 
+            <p>
 
-            <th scope="col">@Html.DisplayNameFor(Model => Model.FirstName)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.LastName)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.EmailId)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.Password)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.UserName)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.Address)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.PhoneNo)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.Country)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.State)</th>
-            <th scope="col">@Html.DisplayNameFor(Model => Model.Zip)</th>
+                Name:  @Html.DisplayFor(Model => Model.FirstName)
+                @Html.DisplayFor(Model => Model.LastName)<br>
+              
+                EmailId: @Html.DisplayFor(Model => Model.EmailId)<br>
+              
+                Password: @Html.DisplayFor(Model => Model.Password)<br>
+                UserName: @Html.DisplayFor(Model => Model.UserName) <br>
+                Address: @Html.DisplayFor(Model => Model.Address)<br>
+                PhoneNo: @Html.DisplayFor(Model => Model.PhoneNo)<br>
+                Country: @Html.DisplayFor(Model => Model.Country)<br>
+                State: @Html.DisplayFor(Model => Model.State)<br>
+                Zip: @Html.DisplayFor(Model => Model.Zip)<br>
 
+            </p>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-
-
-            <th> @Html.DisplayFor(Model => Model.FirstName)</th>
-            <th> @Html.DisplayFor(Model => Model.LastName)</th>
-            <th>@Html.DisplayFor(Model => Model.EmailId)</th>
-            <th>@Html.DisplayFor(Model => Model.Password)</th>
-            <th>@Html.DisplayFor(Model => Model.UserName)</th>
-            <th>@Html.DisplayFor(Model => Model.Address)</th>
-            <th>@Html.DisplayFor(Model => Model.PhoneNo)</th>
-            <th>@Html.DisplayFor(Model => Model.Country)</th>
-            <th>@Html.DisplayFor(Model => Model.State)</th>
-            <th>@Html.DisplayFor(Model => Model.Zip)</th>
-
-        </tr>
-
-
-    </tbody>
-</table>
+        </div>
+    </div>
+</div>
 <center>
-    <a asp-controller="Home" asp-action="About"><button type="button" class="btn btn-success btn1">Back</button></a>
+    <a asp-controller="Home" asp-action="Index"><button type="button" class="btn btn-success btn1">Back to List</button></a>
 </center>
